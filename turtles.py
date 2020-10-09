@@ -237,12 +237,85 @@ import turtle
 # 9) If you were going to draw a regular polygon with 18 sides, 
 # what angle would you need to turn the turtle at each corner?
 
-wn = turtle.Screen()
-alex = turtle.Turtle()
+# wn = turtle.Screen()
+# alex = turtle.Turtle()
 
-inner_angles = range(20)
-for angle in inner_angles:
-    alex.forward(50)
-    alex.left(20)
+# inner_angles = range(20)
+# for angle in inner_angles:
+#     alex.forward(50)
+#     alex.left(20)
 
-wn.mainloop()
+# wn.mainloop()
+
+# =====================================
+
+# 11) Draw a star
+
+# wn = turtle.Screen()
+# alex = turtle.Turtle()
+
+# star_angles = range(5)
+# alex.left(36)
+# for angle in star_angles:
+#     alex.forward(100)
+#     alex.left(144)
+
+# wn.mainloop()
+
+
+# =====================================
+
+# 12) Draw a clock that looks like this:
+
+# wn = turtle.Screen()
+# wn.bgcolor("lightgreen")
+# alex = turtle.Turtle()
+# alex.color("blue")
+# alex.shape("turtle")
+
+# clock_nums = range(12)
+# alex.stamp()
+# for num in clock_nums:
+#     alex.pu()
+#     alex.forward(90)
+#     alex.pd()
+#     alex.forward(30)
+#     alex.pu()
+#     alex.forward(15)
+#     alex.stamp()
+#     alex.bk(135)
+#     alex.left(30)
+
+# wn.mainloop()
+
+
+# =====================================
+
+# 13) Create a turtle, and assign it to a variable. 
+#  you ask for its type, what do you get?
+
+# alex = turtle.Turtle()
+
+# print(type(alex))
+
+
+# =====================================
+
+
+# 14) What is the collective noun for turtles? (Hint: they don’t come in herds.)
+#
+# Answer: A Bale of Turtles
+
+
+# =====================================
+
+
+# 15) What the collective noun for pythons? Is a python a viper? Is a python venomous?
+#
+#Answers:
+# No collective noun for python, (although den, pit, nest, are general terms used
+# for groups of snakes in general)
+
+# A python is not a viper 
+
+# A python in non-venomous
