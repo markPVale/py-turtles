@@ -202,3 +202,4 @@ def star_boy2(sz):
 star_boy2(100)
 
 wn.exitonclick()
+
