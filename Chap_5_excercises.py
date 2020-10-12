@@ -238,3 +238,5 @@ for v in xs:
     draw_bar(tess, v)
 
 wn.exitonclick()
+
+# Finish excercises tomorrow
