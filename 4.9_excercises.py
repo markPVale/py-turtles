@@ -1,20 +1,20 @@
-import turtle
+# import turtle
 
-def make_screen(colr, ttle):
-    wn = turtle.Screen()
-    wn.bgcolor(colr)
-    wn.title(ttle)
-    return wn
+# def make_screen(colr, ttle):
+#     wn = turtle.Screen()
+#     wn.bgcolor(colr)
+#     wn.title(ttle)
+#     return wn
 
 
-def make_turtle(colr, sz):
-    trtl = turtle.Turtle()
-    trtl.color(colr)
-    trtl.pensize(sz)
-    return trtl
+# def make_turtle(colr, sz):
+#     trtl = turtle.Turtle()
+#     trtl.color(colr)
+#     trtl.pensize(sz)
+#     return trtl
 
-screen = make_screen("lightgreen", "4.9_excercises")
-mikey = make_turtle("blue", 3)
+# screen = make_screen("lightgreen", "4.9_excercises")
+# mikey = make_turtle("blue", 3)
 
 
 # def square_boy(sqrz):
@@ -28,25 +28,43 @@ mikey = make_turtle("blue", 3)
 
 # square_boy(5)
 
-def mikey_square(sz):    
-    for _ in range(4):
-        mikey.forward(sz)
-        mikey.left(90)
-    mikey.pu()
-    mikey.bk((10))
-    mikey.right(90)
-    mikey.forward(10)
-    mikey.left(90)
-    mikey.pd()
+# def mikey_square(sz):    
+#     for _ in range(4):
+#         mikey.forward(sz)
+#         mikey.left(90)
+#     mikey.pu()
+#     mikey.bk((10))
+#     mikey.right(90)
+#     mikey.forward(10)
+#     mikey.left(90)
+#     mikey.pd()
 
 
-def multi_square(sz, layers):
-    for layer in range(layers):
-        mikey_square(sz + (20 * layer))
+# def multi_square(sz, layers):
+#     for layer in range(layers):
+#         mikey_square(sz + (20 * layer))
 
-multi_square(30, 17)
+# multi_square(30, 17)
     
 
-screen.mainloop()
+# screen.mainloop()
 
 # add this to py-turtles
+
+# 3) Write a void function draw_poly(t, n, sz) which makes a turtle draw a regular polygon. 
+# When called with draw_poly(tess, 8, 50), it will draw a shape like this:
+
+import turtle
+
+wn = turtle.Screen()
+
+def draw_poly(t, n, sz):
+    for _ in range(n):
+        t.forward(sz)
+        t.left(360/n)
+
+tess = turtle.Turtle()
+draw_poly(tess, 8, 50)
+
+wn.mainloop()
+
