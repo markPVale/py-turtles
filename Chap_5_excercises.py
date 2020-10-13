@@ -17,14 +17,51 @@
 # and the length of your stay, and it will tell you the name of day of the week you 
 # will return on.
 
-# key = (input("What day of the week would you like to leave? "))
 
-# days = {
-#     0: "Sunday", 1: "Monday", 2: "Tuesday", 3: "Wednesday", 4: "Thursday", 5: "Friday",
-#     6: "Saturday", 7: "Sunday"
-# }
+# CODE BELOW STILL DOESN'T WORK!!!
+# def vacay_length(duration):
+#     day = (input("What day of the week would you like to leave? "))
 
-# print(key[days])
+#     days = {
+#         "Sunday": 0, "Monday": 1, "Tuesday": 2, "Wednesday": 3, "Thursday": 4, "Friday": 5,
+#     "Saturday": 6, "Sunday": 7
+#     }
+
+#     if day in days:
+#         print("The number of the day you want to leave is: ", days[day])
+#         print((days[day] + duration) % 7)
+#         v = int((days[day] + duration) % 7)
+#         print(f"you left your destination on a {days[v]}.")
+#     else:
+#         print("That day isn't in the week")
+        
+# print(vacay_length(21))
+
+# CODE ABOVE STILL DOESN'T WORK !!!
+
+
+# weekdays = {0: "Sunday", 1: "Monday", 2: "Tuesday", 3: "Wednesday", 4: "Thursday", 
+# 5: "Friday", 6: "Saturday"}
+
+# x = int(input("what number of day of the week are you leaving? \n"))
+# print("that's a {}.".format(weekdays[x]))
+
+# y = int(input("How many nights will you stay at your destination? \n"))
+
+# z = (x + y) % 7
+
+# print("You left your destination on a {}".format(weekdays[z]))
+
+
+
+
+
+
+
+
+
+
+
 
 # data = {'a': '1', 'b': '2', 'c':'3'}
 
@@ -189,55 +226,112 @@
 # it puts the text below the bottom of the bar.
 
 
-import turtle
+# import turtle
 
-wn = turtle.Screen()
-wn.bgcolor("lightgreen")
+# wn = turtle.Screen()
+# wn.bgcolor("lightgreen")
 
-def draw_bar(t, height):
+# def draw_bar(t, height):
 
-    t.begin_fill()
-    t.left(90)
-    if height > 0:
-        t.forward(height)
-        t.write(" " + str(height))
-    else:
-        t.forward(height)
-        t.pu()
-        t.forward(-12)
-        t.write(" " + str(height))
-        t.bk(-12)
-        t.pd()
-    t.right(90)
-    t.forward(40)
-    t.right(90)
-    t.forward(height)
-    t.left(90)
-    t.end_fill()
-    t.pu()
-    t.forward(10)
-    t.pd()
+#     t.begin_fill()
+#     t.left(90)
+#     if height > 0:
+#         t.forward(height)
+#         t.write(" " + str(height))
+#     else:
+#         t.forward(height)
+#         t.pu()
+#         t.forward(-12)
+#         t.write(" " + str(height))
+#         t.bk(-12)
+#         t.pd()
+#     t.right(90)
+#     t.forward(40)
+#     t.right(90)
+#     t.forward(height)
+#     t.left(90)
+#     t.end_fill()
+#     t.pu()
+#     t.forward(10)
+#     t.pd()
 
     
-tess = turtle.Turtle()
-tess.color("blue", "red")
-tess.pensize(3)
+# tess = turtle.Turtle()
+# tess.color("blue", "red")
+# tess.pensize(3)
 
-tess.pu()
-tess.bk(100)
-tess.pd()
+# tess.pu()
+# tess.bk(100)
+# tess.pd()
 
-xs = [48, 117, -155, 200, 240, 160, 260, 220]
+# xs = [48, 117, -155, 200, 240, 160, 260, 220]
 
-for v in xs:
-    if v >= 200:
-        tess.color("blue", "red")
-    elif v >= 100 and v < 200:
-        tess.color("blue", "yellow")
-    else: tess.color("blue", "green")
-    draw_bar(tess, v)
+# for v in xs:
+#     if v >= 200:
+#         tess.color("blue", "red")
+#     elif v >= 100 and v < 200:
+#         tess.color("blue", "yellow")
+#     else: tess.color("blue", "green")
+#     draw_bar(tess, v)
 
-wn.exitonclick()
+# wn.exitonclick()
 
 # Finish excercises tomorrow
 # Please work
+
+
+# 10) Write a function find_hypot which, given the length of two sides of a 
+# right-angled triangle, returns the length of the hypotenuse. 
+# (Hint: x ** 0.5 will return the square root.)
+
+# def find_hypot(a, b):
+#     return (a ** 2 + b **2) ** .5
+
+# print(find_hypot(4,5))
+
+
+# 11) Write a function is_rightangled which, given the length of three sides 
+# of a triangle, will determine whether the triangle is right-angled. 
+# Assume that the third argument to the function is always the longest side. 
+# It will return True if the triangle is right-angled, or False otherwise.
+
+# def is_rightangled(a, b, c):
+#     if a ** 2 + b ** 2 == c ** 2:
+#         return True
+#     else:
+#         return False
+# print(is_rightangled(11, 60, 61))
+
+
+# 12) Extend the above program so that the sides can be given to the function in any order.
+
+# def is_rightangled(a, b, c):
+#     sides_list = [a, b, c]
+#     sorted_sides = sorted(sides_list)
+#     a = sorted_sides[0]
+#     b = sorted_sides[1]
+#     c = sorted_sides[2]
+#     if a ** 2 + b ** 2 == c ** 2:
+#         print(sorted_sides[1])
+#         return True
+#     else:
+#         print(sorted_sides[1])
+#         return False
+        
+
+
+# print(is_rightangled(12, 13, 5))
+
+
+# 13) If you’re intrigued by why floating point arithmetic is sometimes inaccurate, 
+# on a piece of paper, divide 10 by 3 and write down the decimal result. 
+# You’ll find it does not terminate, so you’ll need an infinitely long sheet of paper. 
+# The representation of numbers in computer memory or on your calculator has similar
+#  problems: memory is finite, and some digits may have to be discarded. 
+# So small inaccuracies creep in. Try this script:
+    
+# import math
+
+# a = math.sqrt(2.0)
+# print(a, a*a)
+# print(a*a == 2.0)
