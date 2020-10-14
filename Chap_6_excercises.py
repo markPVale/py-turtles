@@ -119,37 +119,92 @@ def absolute_value(n):   # Buggy version
 
 # HELPER FUNCTION
 
-import sys
+# import sys
 
-def test(did_pass):
-    """    Print the result of a test.    """
-    # Get the caller's line number.
-    linenum = sys._getframe(1).f_lineno
-    if did_pass:
-        msg = "Test at line {0} ok.".format(linenum)
-    else:
-        msg = ("Test at line {0} FAILED.".format(linenum))
-    print(msg)
+# def test(did_pass):
+#     """    Print the result of a test.    """
+#     # Get the caller's line number.
+#     linenum = sys._getframe(1).f_lineno
+#     if did_pass:
+#         msg = "Test at line {0} ok.".format(linenum)
+#     else:
+#         msg = ("Test at line {0} FAILED.".format(linenum))
+#     print(msg)
 
 
 # Construct our test suite:
 
-def test_suite():
-    """  Run the suite of tests for code in this module (this file).  """
-    # test(absolute_value(17) == 17)
-    # test(absolute_value(-17) == 17)
-    # test(absolute_value(0) == 0)
-    # test(absolute_value(3.14) == 3.14)
-    # test(absolute_value(-3.14) == 3.14)
-    assert absolute_value(3) == 3
-    assert absolute_value(0) == 0
-    assert absolute_value(-55) == 55
+# def test_suite():
+#     """  Run the suite of tests for code in this module (this file).  """
+#     test(absolute_value(17) == 17)
+#     test(absolute_value(-17) == 17)
+#     test(absolute_value(0) == 0)
+#     test(absolute_value(3.14) == 3.14)
+#     test(absolute_value(-3.14) == 3.14)
+#     assert absolute_value(3) == 3
+#     assert absolute_value(0) == 0
+#     assert absolute_value(-55) == 55
     
 
 # Here is the call to run the tests:
-test_suite()  
+# test_suite()  
 
 
+# 6.9 Excercises
+
+# 1) The four compass points can be abbreviated by single-letter strings as
+#  “N”, “E”, “S”, and “W”. Write a function turn_clockwise that takes one of 
+# these four compass points as its parameter, and returns the next compass point 
+# in the clockwise direction. Here are some tests that should pass:
+
+# test(turn_clockwise("N") == "E")
+# test(turn_clockwise("W") == "N")
 
 
+# def turn_clockwise(dir):
+#     if dir == "N":
+#         return "E"
+#     elif dir == "E":
+#         return "S"
+#     elif dir == "S":
+#         return "W"
+#     elif dir == "W":
+#         return "N"
+#     else:
+#         # print("Sorry, that is not a valid direction!")
+#         return None 
+
+
+def turn_clockwise(dir):
+    """ Takes direction, dir, in the form of a single letter N, E, S or W.
+    Returns the directin 90 degrees clockwise from the input."""
+
+    rotator = {
+        "N": "E",
+        "E": "S",
+        "S": "W",
+        "W": "N"
+    }
+
+    if dir in rotator:
+        return rotator[dir]
+    else:
+        return None
+
+
+print(turn_clockwise("N"))
+
+
+def test_suite_ass():
+    """  suite of tests using assert statement  """
+
+    assert turn_clockwise("N")
+    assert turn_clockwise("E")
+    assert turn_clockwise("W")
+    assert turn_clockwise("S")
+    assert turn_clockwise("P")
+
+    
+
+test_suite_ass()
 
