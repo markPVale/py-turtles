@@ -198,13 +198,121 @@ print(turn_clockwise("N"))
 def test_suite_ass():
     """  suite of tests using assert statement  """
 
-    assert turn_clockwise("N")
-    assert turn_clockwise("E")
-    assert turn_clockwise("W")
-    assert turn_clockwise("S")
-    assert turn_clockwise("P")
+    # assert turn_clockwise("N")
+    # assert turn_clockwise("E")
+    # assert turn_clockwise("W")
+    # assert turn_clockwise("S")
+    # assert turn_clockwise("P")
+
+    # assert day_name(3) == "Wednesday"
+    # assert day_name(6) == "Saturday"
+    # assert day_name(42) == None
+
+    # assert day_num("Friday") == 5
+    # assert day_num("Sunday") == 0
+    # assert day_num(day_name(3)) == 3
+    # assert day_name(day_num("Thursday")) == "Thursday"
+    # assert day_num("Halloween") == None
+
+    assert day_add("Monday", 4) == "Friday"
+    assert day_add("Tuesday", 0) == "Tuesday"
+    assert day_add("Tuesday", 14) == "Tuesday"
+    assert day_add("Sunday", 100) == "Tuesday"
+
+    assert day_add("Sunday", -1) == "Saturday"
+    assert day_add("Sunday", -7) == "Sunday"
+    assert day_add("Tuesday", -100) == "Sunday"
+
+    
+    
+
 
     
 
+# test_suite_ass()
+
+# 2) Write a function day_name that converts an integer number 0 to 6 into the 
+# name of a day. Assume day 0 is “Sunday”. Once again, return None if the 
+# arguments to the function are not valid. Here are some tests that should pass:
+
+def day_name(num):
+    
+    days = {
+        0 : "Sunday",
+        1 : "Monday",
+        2 : "Tuesday",
+        3 : "Wednesday",
+        4 : "Thursday",
+        5 : "Friday",
+        6 : "Saturday",
+        7 : "Sunday"
+    }   
+
+    if num in days:
+        return days[num]
+    else:
+        return None
+
+# print(day_name(12))
+
+
+# test_suite_ass()
+
+
+# 3) Write the inverse function day_num which is given a day name, and returns its number:
+
+def day_num(day):
+
+    days = {
+        "Sunday" : 0,
+        "Monday" : 1,
+        "Tuesday" : 2,
+        "Wednesday" : 3,
+        "Thursday" : 4,
+        "Friday" : 5,
+        "Saturday" : 6,
+    }
+
+    if day in days:
+        return days[day]
+    else:
+        return None
+
+print(day_num("Wednesday"))
+
+# test_suite_ass()
+
+
+# 4) Write a function that helps answer questions like ‘“Today is Wednesday. 
+# I leave on holiday in 19 days time. What day will that be?”’ 
+# So the function must take a day name and a delta argument — the number of days to add — 
+# and should return the resulting day name: 
+
+def day_add(day, duration):
+
+    days = {
+        "Sunday" : 0,
+        "Monday" : 1,
+        "Tuesday" : 2,
+        "Wednesday" : 3,
+        "Thursday" : 4,
+        "Friday" : 5,
+        "Saturday" : 6,
+    }
+    
+    if day in days:
+        new_day = (days[day] + duration) % 7
+        return day_name(new_day)
+
+
+print(day_add("Wednesday", -1))
+
 test_suite_ass()
+
+
+
+
+
+
+
 
