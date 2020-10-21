@@ -17,24 +17,24 @@ print(num_digits(710))
 
 # # ENCAPSULATION AND GENERALIZATION
 
-def print_multiples(n):
-    for i in range(1, 7):
-        print(n * i, end="   ")
-    print()
+# def print_multiples(n):
+#     for i in range(1, 7):
+#         print(n * i, end="   ")
+#     print()
 
-print_multiples(2)
+# print_multiples(2)
 
-for i in range(1, 7):
-    print_multiples(i)
+# for i in range(1, 7):
+#     print_multiples(i)
 
 
 # encapsulation again:
 
-def print_mult_table():
-    for i in range(1,7):
-        print_multiples(i)
+# def print_mult_table():
+#     for i in range(1,7):
+#         print_multiples(i)
 
-print_mult_table()
+# print_mult_table()
 
 
 # NESTED LOOPS FOR NESTED DATA
@@ -208,13 +208,42 @@ print(newt_sqrt(81))
 print(newt_sqrt(85))
 
 
-# 8) 
+# 8) Trace the execution of the last version of print_mult_table and 
+# figure out how it works
+
+def print_multiples(n, high):
+    for i in range(1, high+1):
+        print(n * i, end="   ")
+    print()
+
+def print_mult_table(high):
+    for i in range(1, high+1):
+        print_multiples(i, i + 1)
+    print()
+
+print_mult_table(5)
+
+# for every number in the variable range, the function 
+#   print_multiples is run 
+# print_multiples takes the first number of the variable in print_mult_table --> for 1 
+# --> print_multiples(1, (1+1))
+#for the ints i range(1, (1+1) +1) --> range(1,3) --> affected range = 1 and 2
+#  print_multiples prints i * ints in affected range (1 * 1), (1 *2)
 
 
+# 9) Write a function print_triangular_numbers(n) that prints out the first n 
+# triangular numbers. A call to print_triangular_numbers(5) would produce the 
+# following output:
 
+# 1       1
+# 2       3
+# 3       6
+# 4       10
+# 5       15
 
+# def print_triangular_numbers(n):
+    
 
-
-
-
-
+def print_rng(n):
+    for i in range(n +1):
+        print(i)
