@@ -383,16 +383,52 @@ assert num_digits(0) == 1
 assert num_digits(-12345) == 5
 
 
+# 15) Write a function num_even_digits(n) that counts the number of even digits in n.
+#  These tests should pass:
+
+
+def num_even_digits(n):
+    n = abs(n)
+    n = str(n)
+
+    count = 0
+    for char in n:
+        if int(char) % 2 == 0:
+            count += 1
+    return count
+
+
+
+assert num_even_digits(123456) == 3
+assert num_even_digits(2468) == 4
+assert num_even_digits(1357) == 0
+assert num_even_digits(0) == 1
+
+
+
+
 # 16) Write a function sum_of_squares(xs) that computes the sum of the squares 
 # of the numbers in the list xs. For example, sum_of_squares([2, 3, 4]) 
 # should return 4+9+16 which is 29:
 
 def sum_of_squares(xs):
+    results = 0
     for nums in xs:
-        return nums ** 2
+        results += nums ** 2
+    return results
+
 
 
 print(sum_of_squares([2,3,4]))
+
+
+# 17) You and your friend are in a team to write a two-player game, 
+# human against computer, such as Tic-Tac-Toe / Noughts and Crosses. 
+# Your friend will write the logic to play one round of the game, 
+# while you will write the logic to allow many rounds of play, keep score, 
+# decide who plays, first, etc. The two of you negotiate on how the two parts of 
+# the program will fit together, and you come up with this simple scaffolding 
+# (which your friend will improve later):
 
 
 
