@@ -3,16 +3,16 @@
 
 # # COUNTING DIGITS
 
-def num_digits(n):
-    count = 0
-    while n != 0:
-        count = count + 1 
-        n = n // 10
-        print(n)
-    return count
+# def num_digits(n):
+#     count = 0
+#     while n != 0:
+#         count = count + 1 
+#         n = n // 10
+#         print(n)
+#     return count
 
 
-print(num_digits(710))
+# print(num_digits(710))
 
 
 # # ENCAPSULATION AND GENERALIZATION
@@ -245,5 +245,155 @@ print_mult_table(5)
     
 
 def print_rng(n):
-    for i in range(n +1):
-        print(i)
+    for i in range(1, n + 1):
+        print(i,  int(i * (i + 1)/2))
+
+
+print_rng(5)
+
+
+# 10) Write a function, is_prime, which takes a single integer argument and 
+# returns True when the argument is a prime number and False otherwise. 
+# Add tests for cases like this:
+
+def prime_numero(n):
+    if n > 1:
+        for i in range(2,n):
+            if n % i == 0:
+                print(False)
+                return False
+                break    
+        else:
+            print(True)
+            return True
+
+prime_numero(42)
+
+assert prime_numero(43)
+assert prime_numero(11)
+# assert prime_numero(35)
+assert prime_numero(19911121)
+
+
+
+# 11) Revisit the drunk pirate problem from the exercises in 
+# chapter 3. This time, the drunk pirate makes a turn, and then takes some steps 
+# forward, and repeats this. Our social science student now records 
+# pairs of data: the angle of each turn, and the number of steps taken after the turn. 
+# Her experimental data is [(160, 20), (-43, 10), (270, 8), (-43, 12)]. 
+# Use a turtle to draw the path taken by our drunk friend.
+
+# import turtle
+
+# wn = turtle.Screen()
+# t = turtle.Turtle()
+# wn.bgcolor("green")
+# t.color("blue")
+
+coordinates =  [(160, 20), (-43, 10), (270, 8), (-43, 12)]
+
+# print(len(coordinates))
+
+def drunky(coordinates):
+    import turtle
+    wn = turtle.Screen()
+    t = turtle.Turtle()
+    wn.bgcolor("green")
+    t.color("blue")
+    for (angles, steps) in coordinates:
+        if angles < 0:
+            t.right(angles)
+            t.forward(steps * 10)
+        else:
+            t.left(angles)
+            t.forward(steps * 10)
+    
+    wn.exitonclick()
+
+# drunky([(160, 20), (-43, 10), (270, 8), (-43, 12)])
+
+
+# 12) Many interesting shapes can be drawn by the turtle by giving a list of pairs 
+# like we did above, where the first item of the pair is the angle to turn, 
+# and the second item is the distance to move forward. Set up a list of pairs so 
+# that the turtle draws a house with a cross through the centre, as show here. 
+# This should be done without going over any of the lines / edges more than once, 
+# and without lifting your pen.
+
+
+def housey(coordinates):
+    import turtle
+    wn = turtle.Screen()
+    t = turtle.Turtle()
+    wn.bgcolor("green")
+    t.color("blue")
+    for (angles, steps) in coordinates:
+        if angles <= 0:
+            t.right(angles)
+            t.forward(steps * 10)
+        else:
+            t.left(angles)
+            t.forward(steps * 10)
+    
+    wn.exitonclick()
+
+# housey([(0, 20), (90, 20), (90, 20), (90, 20), (135, 20*2**.5), (90, 20*.5**.5), 
+# (90, 20*.5**.5), (90, 20*2**.5)])
+
+
+
+# 13) Not all shapes like the one above can be drawn without lifting your pen, 
+# or going over an edge more than once. Which of these can be drawn?
+
+# Eulerian Paths - A finite graph that visits every edge exactly once
+
+# Eulerian Circuit - A Eulerian trail that starts and ends on the same vertex. For a 
+#     Eulerian circuit to exist, all vertices must have an even degree
+
+
+# 14) What will num_digits(0) return? Modify it to return 1 for this case. 
+# Why does a call to num_digits(-24) result in an infinite loop? 
+# (hint: -1//10 evaluates to -1) Modify num_digits so that it works correctly 
+# with any integer value. Add these tests:
+
+
+# def num_digits(n):
+#     count = 0
+#     while n != 0:
+#         count = count + 1
+#         n = n // 10
+#         print(count)
+#     return count
+
+
+# Since -24 // 10 eventually gets to -1, and -1 // 10 = -1, there will be an infinite
+# loop since n will never reach 0.
+
+# The function is meant to count the number of individual digits in a number range 
+# (1 - range + 1).
+
+#redux:
+
+def num_digits(n):
+    return len(str(abs(n)))
+
+print(num_digits(10))
+
+assert num_digits(0) == 1
+assert num_digits(-12345) == 5
+
+
+# 16) Write a function sum_of_squares(xs) that computes the sum of the squares 
+# of the numbers in the list xs. For example, sum_of_squares([2, 3, 4]) 
+# should return 4+9+16 which is 29:
+
+def sum_of_squares(xs):
+    for nums in xs:
+        return nums ** 2
+
+
+print(sum_of_squares([2,3,4]))
+
+
+
+
