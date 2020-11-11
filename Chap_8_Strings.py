@@ -57,7 +57,7 @@ find("macdaa", "c")
 
 def count_a(text):
     """
-        Write a function that counts the number of 
+        Write a function that counts the number of
         times the character "a" is in the inserted text
     """
     ix = 0
@@ -75,7 +75,7 @@ count_a("Macca lacca bobacca")
 
 def count_b(text):
     """
-        Write a function that counts the number of 
+        Write a function that counts the number of
         times the character b exists in the text input
     """
     ix = 0
@@ -97,7 +97,7 @@ count_b("babba labba")
 
 def find_2(strg, ch, start=0):
     """
-        Write a function that finds a given character in 
+        Write a function that finds a given character in
         a given text at a given start position.
     """
     ix = start
@@ -124,7 +124,7 @@ print("bananas".find("nan"))
 
 def remove_puncs(s):
     """
-        write a function that will remove the punctuation from a 
+        write a function that will remove the punctuation from a
         str using python's built in string module
     """
     sans_puncs = ""
@@ -146,3 +146,59 @@ feathers, beaks, and eggshells? The 'extra stuff' gets passed out as ---
 you guessed it --- snake POOP! """
 
 remove_puncs(stringy)
+
+
+print()
+print(" == == == == == == == == == == == ")
+
+print()
+
+
+# 8.19 Excercises
+
+# 1) What is the result of each of the following:
+
+print("Python"[1])
+print("Strings are sequences of characters."[5])
+print(len("wonderful"))
+print("Mystery"[:4])
+print("p" in "Pineapple")
+print("apple" in "Pineapple")
+print("pear" not in "Pineapple")
+print("apple" > "pineapple")
+print("pineapple" < "Peach")
+
+
+# 2) Modify the code below so that Ouack and Quack are spelled correctly
+
+prefixes = "JKLMNOPQ"
+suffix = "ack"
+
+for letter in prefixes:
+    if letter == "O" or letter == "Q":
+        print(letter + "u" + suffix)
+    else:
+        print(letter + suffix)
+
+# 3) Encapsulate
+# in a function named count_letters, and generalize it so that it accepts the string and
+# the letter as arguments. Make the function return the number of characters, rather than print the answer.
+# The caller should do the printing.
+
+fruit = "banana"
+count = 0
+for char in fruit:
+    if char == "a":
+        count += 1
+print(count)
+
+
+def count_letters(strng, char):
+    count = 0
+    for letters in strng:
+        if letters == char:
+            count += 1
+    print(count)
+
+
+count_letters("banana", "n")
