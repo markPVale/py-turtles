@@ -202,3 +202,37 @@ def count_letters(strng, char):
 
 
 count_letters("banana", "n")
+
+print("--------------")
+
+print(len("bob"))
+# Now rewrite the count_letters function so that instead of traversing the string,
+# it repeatedly calls the find method, with the optional third parameter to locate new
+# occurrences of the letter being counted.
+
+
+# def find(strng, ch, start=0):
+#     ix = start
+#     while ix < len(strng):
+#         if strng[ix] == ch:
+#             print(ix)
+#         ix += 1
+#     return -1
+
+
+# find("banana", "a")
+
+
+def find_letters(strng, char, start=0):
+    count = 0
+    ix = start
+    while ix < len(strng):
+        if strng[ix].find(char) != -1:
+            count += 1
+            ix = strng.find(char) + 1
+        else:
+            return -1
+    print(count)
+
+
+find_letters("bononana", "a")
