@@ -206,7 +206,7 @@ count_letters("banana", "n")
 print("--------------")
 
 print(len("bob"))
-# Now rewrite the count_letters function so that instead of traversing the string,
+# 4) Now rewrite the count_letters function so that instead of traversing the string,
 # it repeatedly calls the find method, with the optional third parameter to locate new
 # occurrences of the letter being counted.
 
@@ -223,16 +223,56 @@ print(len("bob"))
 # find("banana", "a")
 
 
-def find_letters(strng, char, start=0):
-    count = 0
-    ix = start
-    while ix < len(strng):
-        if strng[ix].find(char) != -1:
-            count += 1
-            ix = strng.find(char) + 1
-        else:
-            return -1
-    print(count)
+# def find_letters(strng, char, start=0):
+#     count = 0
+#     ix = start
+#     while ix < len(strng):
+#         if strng[ix].find(char) != -1:
+#             count += 1
+#             ix = strng.find(char) + 1
+#         else:
+#             return -1
+#     print(count)
 
 
-find_letters("bononana", "a")
+# find_letters("bononana", "a")
+
+
+# 5) Assign to a variable in your program a triple-quoted string that contains your
+# favourite paragraph of text — perhaps a poem, a speech, instructions to bake a cake,
+# some inspirational verses, etc.
+
+# Write a function which removes all punctuation from the string, breaks the string into a
+# list of words, and counts the number of words in your text that contain the letter “e”.
+# Your program should print an analysis of the text like this:
+
+# Your text contains 243 words, of which 109 (44.8%) contain an "e".
+
+
+m = """ “If someone is able to show me that what I think or do is not right, I will happily change, 
+for I seek the truth, by which no one was ever truly harmed. It is the person who continues in 
+his self-deception and ignorance who is harmed.”
+"""
+
+
+def mod_quote(s):
+    import string
+    splitz = s.split()
+    sans_punc = ""
+    eList = []
+
+    for letters in s:
+        if letters not in string.punctuation:
+            sans_punc += letters
+    split_quote = sans_punc.split()
+    for words in split_quote:
+        if "e" in words:
+            eList.append(words)
+    s1 = "Your text contains {0} words, of which {1} ({2:.0%}) contain an 'e')".format(
+        len(splitz), len(eList), len(eList)/len(splitz))
+    print(s1)
+    print(len(splitz))
+    print(len(eList))
+
+
+mod_quote(m)
