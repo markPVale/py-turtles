@@ -249,8 +249,8 @@ print(len("bob"))
 # Your text contains 243 words, of which 109 (44.8%) contain an "e".
 
 
-m = """ “If someone is able to show me that what I think or do is not right, I will happily change, 
-for I seek the truth, by which no one was ever truly harmed. It is the person who continues in 
+m = """ “If someone is able to show me that what I think or do is not right, I will happily change,
+for I seek the truth, by which no one was ever truly harmed. It is the person who continues in
 his self-deception and ignorance who is harmed.”
 """
 
@@ -276,3 +276,109 @@ def mod_quote(s):
 
 
 mod_quote(m)
+
+
+# 6) Print a neat looking multiplication table like this:
+
+def times_table(n):
+
+    line = "    "
+    for i in range(1, n+1):
+        line = line + "{:>4}".format(i)
+    print(line)
+
+    line = "   :"
+    for i in range(n):
+        line = line + "----"
+    print(line)
+
+    for i in range(1, n+1):
+        line = "{0:3}:".format(i)
+        for j in range(1, n+1):
+            line = line + "{:4}".format(i*j)
+        print(line)
+
+
+times_table(15)
+
+
+# 7) Write a function that reverses its string argument, and satisfies these tests:
+
+def rev_str(str):
+    str = str[::-1]
+    # print(str)
+    return str
+
+
+assert rev_str("clock") == "kcolc"
+
+rev_str("happy")
+
+
+# 8) Write a function that mirrors its argument:
+
+def mirror_mirror(str):
+    str = str + str[::-1]
+    print(str)
+    return str
+
+
+mirror_mirror("good")
+
+
+# 9) Write a function that removes all occurrences of a given letter from a string:
+
+def rem_let(word, char):
+    res = ""
+    for chars in word:
+        if chars != char:
+            res += chars
+    print(res)
+    return res
+
+
+assert rem_let("banana", "b") == "anana"
+assert rem_let("banana", "z") == "banana"
+assert rem_let("Mississippi", "i") == "Msssspp"
+assert rem_let("", "b") == ""
+assert rem_let("b", "c") == "b"
+
+
+rem_let("appla", "a")
+
+
+# 10) Write a function that recognizes palindromes. (Hint: use your reverse function
+# to make this easy!):
+
+def pal_or_nal(str):
+    print(str == rev_str(str))
+    return str == rev_str(str)
+
+
+pal_or_nal("abba")
+
+assert pal_or_nal("abba") == True
+assert pal_or_nal("abab") == False
+assert pal_or_nal("tenet") == True
+assert pal_or_nal("banana") == False
+assert pal_or_nal("straw warts") == True
+assert pal_or_nal("a") == True
+assert pal_or_nal("") == True
+
+
+# 11) Write a function that counts how many times a substring occurs in a string:
+
+def subs(str, sb, start=-1):
+    count = 0
+    start = start
+    while str.find(sb) != -1:
+        start = str.find(sb, start + 1)
+        if str.find(sb, start) == -1:
+            return count
+        else:
+            count += 1
+
+
+print(subs("banana", "an"))
+
+print("banana".find("an"))
