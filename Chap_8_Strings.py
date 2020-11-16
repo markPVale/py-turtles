@@ -210,19 +210,24 @@ print(len("bob"))
 # it repeatedly calls the find method, with the optional third parameter to locate new
 # occurrences of the letter being counted.
 
-
-# def find(strng, ch, start=0):
-#     ix = start
-#     while ix < len(strng):
-#         if strng[ix] == ch:
-#             print(ix)
-#         ix += 1
-#     return -1
+print('++++++++++++++++++++')
 
 
-# find("banana", "a")
+def find_ch(strng, ch, start=-1):
+    count = 0
+    start = start
+    while start < len(strng):
+        start = strng.find(ch, start + 1)
+        if start == -1:
+            return count
+        else:
+            count += 1
+    return count
 
 
+print(find_ch("banana", "a"))
+
+print("++++++++++++++++++++++")
 # def find_letters(strng, char, start=0):
 #     count = 0
 #     ix = start
@@ -368,12 +373,28 @@ assert pal_or_nal("") == True
 
 # 11) Write a function that counts how many times a substring occurs in a string:
 
+# def subs(str, sb, start=-1):
+#     count = 0
+#     start = start
+#     while str.find(sb) != -1:
+#         start = str.find(sb, start + 1)
+#         if str.find(sb, start) == -1:
+#             return count
+#         else:
+#             count += 1
+
+
+# print(subs("banana", "an"))
+
+# print("banana".find("an"))
+
+
 def subs(str, sb, start=-1):
     count = 0
     start = start
-    while str.find(sb) != -1:
+    while start < len(str):
         start = str.find(sb, start + 1)
-        if str.find(sb, start) == -1:
+        if start == -1:
             return count
         else:
             count += 1
@@ -381,4 +402,45 @@ def subs(str, sb, start=-1):
 
 print(subs("banana", "an"))
 
-print("banana".find("an"))
+
+assert subs("Mississippi", "is") == 2
+assert subs("banana", "an") == 2
+assert subs("banana", "nana") == 1
+assert subs("banana", "nanan") == 0
+assert subs("banana", "aaa") == 0
+assert subs("aaaaaa", "aaa") == 4
+
+
+# 12) Write a function that removes the first occurrence of a string
+# from another string
+
+def remove(str, sub):
+    sbi = str.find(sub)
+    if sbi != -1:
+        return str[0:sbi] + str[sbi + len(sub):]
+    else:
+        return str
+
+
+print(remove("banana", "an"))
+
+
+assert remove("bicycle", "cyc") == "bile"
+assert remove("Mississippi", "iss") == "Missippi"
+assert remove("bicycle", "eggs") == "bicycle"
+
+
+# 13) Write a function that removes all ocurrences of a string from another string:
+
+def remove_all(str, sub, start=-1):
+    start = start
+    sbi = str.find(sub)
+    while str.find(sub) != -1:
+        start = str.find(sub, start + 1)
+        if str.find(sub):
+            str = str[0:sbi] + str[sbi + len(sub):]
+    return str
+
+
+print(remove_all("banana", "an"))
+print(remove_all("bicycle", "cyc"))
