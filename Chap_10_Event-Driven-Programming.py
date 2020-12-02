@@ -385,6 +385,347 @@ import turtle
 # resembles reality — i.e. the traffic lights in your town?
 
 
+# turtle.setup(400, 500)
+# wn = turtle.Screen()
+# wn.title("Tess becomes a traffic light!")
+# wn.bgcolor("lightgreen")
+# tg = turtle.Turtle()
+# ty = turtle.Turtle()
+# tr = turtle.Turtle()
+
+
+# def draw_housing():
+#     """ Draw a nice housing to hold the traffic lights """
+#     tg.pensize(3)
+#     tg.color("black", "darkgrey")
+#     tg.begin_fill()
+#     tg.forward(80)
+#     tg.left(90)
+#     tg.forward(200)
+#     tg.circle(40, 180)
+#     tg.forward(200)
+#     tg.left(90)
+#     tg.end_fill()
+
+
+# draw_housing()
+
+# tg.penup()
+# # Position tess onto the place where the green light should be
+# tg.forward(40)
+# tg.left(90)
+# tg.forward(70)
+# # Turn tess into a big green circle
+# # tess.shape("circle")
+# tg.shapesize(3)
+# tg.fillcolor("green")
+
+# ty.penup()
+# ty.forward(40)
+# ty.left(90)
+# ty.forward(130)
+# ty.shapesize(3)
+# ty.color("yellow")
+
+# tr.penup()
+# tr.forward(40)
+# tr.left(90)
+# tr.forward(200)
+# tr.shapesize(3)
+# tr.color("red")
+
+
+# # A traffic light is a kind of state machine with three states,
+# # Green, Orange, Red. We number these states 0, 1, 2
+# # When the machine changes state, we change tess' position and
+# # her fillcolor.
+
+# # This variable holds the current state of the machine
+# state_num = 0
+
+
+# def advance_state_machine_t():
+#     global state_num
+#     if state_num == 0:
+#         tg.hideturtle()
+#         tr.hideturtle()
+#         ty.showturtle()
+#         # Transition from state 0 to state 1
+#         # tess.forward(70)
+#         # tess.fillcolor("orange")
+#         state_num = 1
+#     elif state_num == 1:
+#         tg.hideturtle()
+#         tr.showturtle()
+#         ty.hideturtle()
+#         # tess.forward(70)
+#         # tess.fillcolor("red")
+#         state_num = 2
+#     else:
+#         tg.showturtle()
+#         tr.hideturtle()
+#         ty.hideturtle()
+#         state_num = 0
+
+# #  Bind the event handler to the timer key.
+#     wn.ontimer(advance_state_machine_t, 2000)
+
+
+# advance_state_machine_t()
+
+# turtle.setup(400, 500)
+# wn = turtle.Screen()
+# wn.title("Tess becomes a traffic light!")
+# wn.bgcolor("lightgreen")
+# tess = turtle.Turtle()
+
+
+# def draw_housing():
+#     """ Draw a nice housing to hold the traffic lights """
+#     tess.pensize(3)
+#     tess.color("black", "darkgrey")
+#     tess.penup()
+#     tess.forward(-100)
+#     tess.pendown()
+#     tess.begin_fill()
+#     tess.forward(80)
+#     tess.left(90)
+#     tess.forward(200)
+#     tess.circle(40, 180)
+#     tess.forward(200)
+#     tess.left(90)
+#     tess.end_fill()
+
+
+# draw_housing()
+
+# tess.penup()
+# # Position tess onto the place where the green light should be
+# tess.forward(40)
+# tess.left(90)
+# tess.forward(50)
+# # Turn tess into a big green circle
+# tess.shape("circle")
+# tess.shapesize(3)
+# tess.fillcolor("green")
+
+# # A traffic light is a kind of state machine with three states,
+# # Green, Orange, Red. We number these states 0, 1, 2
+# # When the machine changes state, we change tess' position and
+# # her fillcolor.
+
+# # This variable holds the current state of the machine
+# c_state_num = 0
+
+
+# def advance_state_machine():
+#     global c_state_num
+#     if c_state_num == 0:
+#         # Transition from state 0 to state 1
+#         tess.forward(70)
+#         tess.fillcolor("orange")
+#         c_state_num = 1
+#     elif c_state_num == 1:
+#         tess.forward(70)
+#         tess.fillcolor("red")
+#         c_state_num = 2
+#     else:
+#         tess.back(140)
+#         tess.fillcolor("green")
+#         c_state_num = 0
+
+# #  Bind the event handler to the timer key.
+#     wn.ontimer(advance_state_machine, 2000)
+
+
+# # advance_state_machine()
+# # # wn.listen()
+# # wn.mainloop()
+
+
+# advance_state_machine()
+# # wn.listen()
+# wn.mainloop()
+
+
+# 4) Now that you’ve got a traffic light program with different turtles for each light,
+# perhaps the visibility / invisibility trick wasn’t such a great idea. If we watch traffic lights,
+# they turn on and off — but when they’re off they are still there, perhaps just a darker color.
+# Modify the program now so that the lights don’t disappear: they are either on, or off.
+# But when they’re off, they’re still visible.
+
+
+# turtle.setup(400, 500)
+# wn = turtle.Screen()
+# wn.title("Tess becomes a traffic light!")
+# wn.bgcolor("lightgreen")
+# tg = turtle.Turtle()
+# ty = turtle.Turtle()
+# tr = turtle.Turtle()
+
+
+# def draw_housing():
+#     """ Draw a nice housing to hold the traffic lights """
+#     tg.pensize(3)
+#     tg.color("black", "darkgrey")
+#     tg.begin_fill()
+#     tg.forward(80)
+#     tg.left(90)
+#     tg.forward(200)
+#     tg.circle(40, 180)
+#     tg.forward(200)
+#     tg.left(90)
+#     tg.end_fill()
+
+
+# draw_housing()
+
+# tg.penup()
+# # Position tess onto the place where the green light should be
+# tg.forward(40)
+# tg.left(90)
+# tg.forward(70)
+# # Turn tess into a big green circle
+# # tess.shape("circle")
+# tg.shapesize(3)
+# tg.color("green")
+
+# ty.penup()
+# ty.forward(40)
+# ty.left(90)
+# ty.forward(130)
+# ty.shapesize(3)
+# ty.color("yellow")
+
+# tr.penup()
+# tr.forward(40)
+# tr.left(90)
+# tr.forward(200)
+# tr.shapesize(3)
+# tr.color("red")
+
+
+# # A traffic light is a kind of state machine with three states,
+# # Green, Orange, Red. We number these states 0, 1, 2
+# # When the machine changes state, we change tess' position and
+# # her fillcolor.
+
+# # This variable holds the current state of the machine
+# state_num = 0
+
+
+# def advance_state_machine_t():
+#     global state_num
+#     if state_num == 0:
+#         tg.color("#deedde")
+#         tr.color("#d0afaf")
+#         ty.color("yellow")
+#         # Transition from state 0 to state 1
+#         # tess.forward(70)
+#         # tess.fillcolor("orange")
+#         state_num = 1
+#     elif state_num == 1:
+#         tg.color("#deedde")
+#         tr.color("red")
+#         ty.color("#efefd1")
+#         # tess.forward(70)
+#         # tess.fillcolor("red")
+#         state_num = 2
+#     else:
+#         tg.color("green")
+#         tr.color("#d0afaf")
+#         ty.color("#efefd1")
+#         state_num = 0
+
+# #  Bind the event handler to the timer key.
+#     wn.ontimer(advance_state_machine_t, 2000)
+
+
+# advance_state_machine_t()
+
+# turtle.setup(400, 500)
+# wn = turtle.Screen()
+# wn.title("Tess becomes a traffic light!")
+# wn.bgcolor("lightgreen")
+# tess = turtle.Turtle()
+
+
+# def draw_housing():
+#     """ Draw a nice housing to hold the traffic lights """
+#     tess.pensize(3)
+#     tess.color("black", "darkgrey")
+#     tess.penup()
+#     tess.forward(-100)
+#     tess.pendown()
+#     tess.begin_fill()
+#     tess.forward(80)
+#     tess.left(90)
+#     tess.forward(200)
+#     tess.circle(40, 180)
+#     tess.forward(200)
+#     tess.left(90)
+#     tess.end_fill()
+
+
+# draw_housing()
+
+# tess.penup()
+# # Position tess onto the place where the green light should be
+# tess.forward(40)
+# tess.left(90)
+# tess.forward(50)
+# # Turn tess into a big green circle
+# tess.shape("circle")
+# tess.shapesize(3)
+# tess.fillcolor("green")
+
+# # A traffic light is a kind of state machine with three states,
+# # Green, Orange, Red. We number these states 0, 1, 2
+# # When the machine changes state, we change tess' position and
+# # her fillcolor.
+
+# # This variable holds the current state of the machine
+# c_state_num = 0
+
+
+# def advance_state_machine():
+#     global c_state_num
+#     if c_state_num == 0:
+#         # Transition from state 0 to state 1
+#         tess.forward(70)
+#         tess.fillcolor("orange")
+#         c_state_num = 1
+#     elif c_state_num == 1:
+#         tess.forward(70)
+#         tess.fillcolor("red")
+#         c_state_num = 2
+#     else:
+#         tess.back(140)
+#         tess.fillcolor("green")
+#         c_state_num = 0
+
+# #  Bind the event handler to the timer key.
+#     wn.ontimer(advance_state_machine, 2000)
+
+
+# # advance_state_machine()
+# # # wn.listen()
+# # wn.mainloop()
+
+
+# advance_state_machine()
+# wn.exitonclick()
+# # wn.listen()
+
+
+# 5) Your traffic light controller program has been patented, and you’re about to
+# become seriously rich. But your new client needs a change. They want four states in
+# their state machine: Green, then Green and Orange together, then Orange only, and then Red.
+# Additionally, they want different times spent in each state. The machine should spend 3
+# seconds in the Green state, followed by one second in the Green+Orange state, then one
+# second in the Orange state, and then 2 seconds in the Red state. Change the logic in the
+# state machine.
+
 turtle.setup(400, 500)
 wn = turtle.Screen()
 wn.title("Tess becomes a traffic light!")
@@ -418,7 +759,7 @@ tg.forward(70)
 # Turn tess into a big green circle
 # tess.shape("circle")
 tg.shapesize(3)
-tg.fillcolor("green")
+tg.color("green")
 
 ty.penup()
 ty.forward(40)
@@ -447,28 +788,40 @@ state_num = 0
 def advance_state_machine_t():
     global state_num
     if state_num == 0:
-        tg.hideturtle()
-        tr.hideturtle()
-        ty.showturtle()
+        tg.color("#deedde")
+        tr.color("#d0afaf")
+        ty.color("yellow")
+        secs = 4000
         # Transition from state 0 to state 1
         # tess.forward(70)
         # tess.fillcolor("orange")
         state_num = 1
     elif state_num == 1:
-        tg.hideturtle()
-        tr.showturtle()
-        ty.hideturtle()
+        tg.color("#deedde")
+        tr.color("red")
+        ty.color("#efefd1")
+        secs = 500
         # tess.forward(70)
         # tess.fillcolor("red")
         state_num = 2
+    elif state_num == 2:
+        tg.color("green")
+        tr.color("#d0afaf")
+        ty.color("#efefd1")
+        secs = 500
+        state_num = 3
     else:
-        tg.showturtle()
-        tr.hideturtle()
-        ty.hideturtle()
+        state_num = 3
+        tg.color("green")
+        tr.color("#d0afaf")
+        ty.color("yellow")
+        secs = 500
         state_num = 0
 
+    # on_time()
+
 #  Bind the event handler to the timer key.
-    wn.ontimer(advance_state_machine_t, 2000)
+    wn.ontimer(advance_state_machine_t, secs)
 
 
 advance_state_machine_t()
@@ -544,5 +897,5 @@ def advance_state_machine():
 
 
 advance_state_machine()
+wn.exitonclick()
 # wn.listen()
-wn.mainloop()
