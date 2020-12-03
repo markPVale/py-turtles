@@ -901,7 +901,7 @@ wn.exitonclick()
 # wn.listen()
 
                             ++++(Server Wins)++++   \
-                           / | |    \     \
+                           / | |   \      \
                      (40, 0) | | | |
                     /              |       |    |      |     
               (30,0)            (40,15)    |    (Server Advantage)
