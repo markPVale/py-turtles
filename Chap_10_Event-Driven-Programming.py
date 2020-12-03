@@ -899,3 +899,22 @@ def advance_state_machine():
 advance_state_machine()
 wn.exitonclick()
 # wn.listen()
+
+                            ++++(Server Wins)++++   \
+                           / | |    \     \
+                     (40, 0) | | | |
+                    /              |       |    |      |     
+              (30,0)            (40,15)    |    (Server Advantage)
+             /        \        /   |       |   /        |   |
+        (15,0)         (30,15)     |    (40,30)         |   |
+       /      \        /       \   |   /       \        |   |
+(0, 0)/        \(15,15)         (30,30)         +++++++(DUECE)     
+      \        /       \       /   |   \       /        |   |
+       \      /         (15,30)    |    (30,40)         |   |
+        (0,15)        /        \   |       |   \        |   |
+              \      /          (15,40)    |    (Non-Server Advantage)
+               (0,30)              |       |    |          |
+                     \             |       |    |          |
+                      (0,40)       |       |    |         /
+                            \      |       |    /        / 
+                             ++++(Server Loses)++++ -- /
