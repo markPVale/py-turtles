@@ -121,3 +121,15 @@ their_result = sum(testdata)
 t3 = time.perf_counter()
 print(
     "their_result = {0} (time taken = {1:.4f} seconds".format(their_result, t3-t2))
+
+
+# 12.3 Math module:
+# Notice another difference between this module and our use of random and turtle: in random and turtle
+#  we create objects and we call methods on the object.
+# This is because objects have state — a turtle has a color, a position, a heading, etc., and every
+# random number generator has a seed value that determines its next result.
+
+# Mathematical functions are “pure” and don’t have any state — calculating the square root of
+# 2.0 doesn’t depend on any kind of state or history about what happened in the past.
+# So the functions are not methods of an object — they are simply functions that are grouped together
+# in a module called math.
