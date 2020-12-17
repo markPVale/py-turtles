@@ -92,7 +92,7 @@ xs = make_random_int_no_dups(5, 1, 10000000)
 print(xs)
 
 
-#  The time module
+#  12.3 The time module
 
 # use the perf_counter() function (.clock() has been deprecated since 3.3) to time how long an operation takes
 # The below example compares the speed in which a function, that we created
