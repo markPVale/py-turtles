@@ -1,5 +1,7 @@
 # Modules
 
+import locale
+import calendar
 import time
 import random
 
@@ -133,3 +135,44 @@ print(
 # 2.0 doesn’t depend on any kind of state or history about what happened in the past.
 # So the functions are not methods of an object — they are simply functions that are grouped together
 # in a module called math.
+
+
+# 12.4 Creating your own modules
+
+# saved files with .py extension can be imported into other py files
+
+
+# 12.11 Excercises
+
+
+# 1.)
+# a. calendar module
+
+
+# create an instance
+cal = calendar.TextCalendar()
+
+# print(cal.pryear(2012))
+
+# # b. An adventurous CompSci student believes that it is better mental
+# # chunking to have his week start on Thursday,
+
+cal = calendar.TextCalendar(3)
+
+print(cal.pryear(2012))
+
+
+# c. Find a function to print just the month in which your birthday occurs this year
+
+
+print(cal.prmonth(2020, 6))
+
+
+# d. Try this:
+
+
+print(locale.getlocale())
+
+d = calendar.LocaleTextCalendar(0, "FR")
+
+print(d.pryear(2018))
