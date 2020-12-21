@@ -172,7 +172,8 @@ print(cal.prmonth(2020, 6))
 
 
 print(locale.getlocale())
+# print(LC_ALL)
 
-d = calendar.LocaleTextCalendar(0, "FR")
 
-print(d.pryear(2018))
+# d = calendar.LocaleTextCalendar(6, "SPANISH")
+# d.pryear(2012)
