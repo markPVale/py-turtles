@@ -1,9 +1,12 @@
 # Modules
 
-import locale
+
+import math
 import calendar
 import time
 import random
+# from locale import getlocale, setlocale, LC_ALL, LC_TIME
+import locale
 
 rng = random.Random()
 
@@ -171,9 +174,130 @@ print(cal.prmonth(2020, 6))
 # d. Try this:
 
 
-print(locale.getlocale())
+# print(locale.getlocale())
 # print(LC_ALL)
 
 
-# d = calendar.LocaleTextCalendar(6, "SPANISH")
+# d = calendar.LocaleTextCalendar(6, "ENGLISH")
 # d.pryear(2012)
+
+# unsupported locale setting. Unable to resolve issue at this time.
+
+
+# 2. Open help for the math module:
+
+# a.) How many functions are in the math module?
+# The math module has 54 functions
+
+# b.) What does math.ceil do? What about math.floor?
+
+# math.ceil = returns the ceiling of x as an Integral:
+print(math.ceil(3.5883))
+# returns 4
+
+# math.floor = returns the floor of x as an Integral:
+print(math.floor(3.5883))
+# returns 3
+
+# c.) Describe how we have been computing the same value as math.sqrt without
+# using the math module:
+
+# performing the function x ** .5 will perform the same operation as math.sqrt
+# e.g.
+print(math.sqrt(25))
+# returns 5.0
+print(25 ** 0.5)
+# returns 5.0
+
+# d). What are the two data constants in the math module?
+
+# The default help module lists the math module in python as having
+# five data constants:
+# e = 2.718281828459045
+# inf = inf
+# nan = nan
+# pi = 3.141592653589793
+# tau = 6.283185307179586
+
+
+# 3). Investigate the copy module. What does deepcopy do?
+
+# Deep copy constructs a new compound object and then, recursively inserts *copies*
+# into it of the objects found in the original. This would come in handy
+# when working excercise 2 in the last chapter, we could have created two distinct
+# instances of turtle instead of an alias for tess
+
+
+# 4).  Create a module named mymodule1.py. Add attributes myage set to your current age,
+# and year set to the current year. Create another module named mymodule2.py.
+# Add attributes myage set to 0, and year set to the year you were born.
+# Now create a file named namespace_test.py.
+# Import both of the modules above and write the following statement:
+
+# print((mymodule2.myage - mymodule1.myage) == (mymodule2.year - mymodule1.year))
+
+
+# True is printed since my birthday for this year already occured.
+
+# 5).  Add the following statement to mymodule1.py, mymodule2.py, and
+# namespace_test.py from the previous exercise:
+
+# print("My name is", __name__)
+
+# Run namespace_test.py. What happens? Why? Now add the following to the bottom of mymodule1.py:
+
+# The name of the module is printed because the name module belongs the instance in
+# which it was created in
+
+# if __name__ == "__main__":
+# print("This won't run if I'm  imported.")
+
+# now the above print statement appears when either mymodule1 or mymodule2 is run
+
+
+# 6).  In a Python shell / interactive interpreter, try the following:
+
+# import this
+
+# returns The Zen of Python, by Tim Peters:
+# "Namespaces are one honking great idea -- let's do more of those!"
+
+
+# 7). Give the Python interpreter’s response to each of the following from a
+# continuous interpreter session:
+
+s = "If we took the bones out, it wouldn't be crunchy, would it?"
+print(s.split())
+# returns : ['If', 'we', 'took', 'the', 'bones', 'out,', 'it', "wouldn't", 'be', 'crunchy,', 'would', 'it?']
+
+print(type(s.split()))
+# returns : <class 'list'>
+
+print(s.split("o"))
+# returns: ['If we t', '', 'k the b', 'nes ', 'ut, it w', "uldn't be crunchy, w", 'uld it?']
+
+print(s.split("i"))
+# returns: ['If we took the bones out, ', "t wouldn't be crunchy, would ", 't?']
+
+print("0".join(s.split("o")))
+# returns: If we t00k the b0nes 0ut, it w0uldn't be crunchy, w0uld it?
+
+
+# Then apply what you have learned to fill in the body of the function below using
+# the split and join methods of str objects:
+
+def myreplace(old, new, s):
+    """ Replace all occurrences of old with new in s. """
+    return new.join(s.split(old))
+
+
+print(myreplace(
+    " ", "**", "Words will now      be  separated by stars."))
+
+assert myreplace(
+    ",", ";", "this, that, and some other thing") == "this; that; and some other thing"
+assert myreplace(
+    " ", "**", "Words will now be separated by stars.") == "Words**will**now**be**separated**by**stars."
+
+
+# 8.)  Create a module named wordtools.py with our test scaffolding in place.
