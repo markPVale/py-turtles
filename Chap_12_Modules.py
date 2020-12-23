@@ -1,6 +1,7 @@
 # Modules
 
 
+import wordtools
 import math
 import calendar
 import time
@@ -301,3 +302,29 @@ assert myreplace(
 
 
 # 8.)  Create a module named wordtools.py with our test scaffolding in place.
+# imported wordtools
+
+assert wordtools.cleanword("what?") == "what"
+assert wordtools.cleanword("'now!'") == "now"
+assert wordtools.cleanword("'now!'") == "now"
+
+assert wordtools.has_dashdash("distance--but")
+assert wordtools.has_dashdash("several") != True
+assert wordtools.has_dashdash("spoke--")
+assert wordtools.has_dashdash("distance--but")
+assert wordtools.has_dashdash("-yo-yo-") != True
+
+assert wordtools.extract_words("Now is the time!    'Now', is the time? Yes, now.") == [
+    'now', 'is', 'the', 'time', 'now', 'is', 'the', 'time', 'yes', 'now']
+
+assert wordtools.extract_words("she tried to curtsey as she spoke--fancy") == [
+    'she', 'tried', 'to', 'curtsey', 'as', 'she', 'spoke', 'fancy']
+
+assert wordtools.wordcount(
+    "now", ["now", "is", "time", "is", "now", "is", "is"]) == 2
+assert wordtools.wordcount(
+    "is", ["now", "is", "time", "is", "now", "the", "is"]) == 3
+assert wordtools.wordcount(
+    "time", ["now", "is", "time", "is", "now", "is", "is"]) == 1
+assert wordtools.wordcount(
+    "frog", ["now", "is", "time", "is", "now", "is", "is"]) == 0
