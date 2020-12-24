@@ -316,7 +316,6 @@ assert wordtools.has_dashdash("-yo-yo-") != True
 
 assert wordtools.extract_words("Now is the time!    'Now', is the time? Yes, now.") == [
     'now', 'is', 'the', 'time', 'now', 'is', 'the', 'time', 'yes', 'now']
-
 assert wordtools.extract_words("she tried to curtsey as she spoke--fancy") == [
     'she', 'tried', 'to', 'curtsey', 'as', 'she', 'spoke', 'fancy']
 
@@ -328,3 +327,16 @@ assert wordtools.wordcount(
     "time", ["now", "is", "time", "is", "now", "is", "is"]) == 1
 assert wordtools.wordcount(
     "frog", ["now", "is", "time", "is", "now", "is", "is"]) == 0
+
+assert wordtools.wordset(["now", "is", "time", "is", "now", "is", "is"]) == [
+    "is", "now", "time"]
+assert wordtools.wordset(["I", "a", "a", "is", "a", "is", "I", "am"]) == [
+    "I", "a", "am", "is"]
+assert wordtools.wordset(["or", "a", "am", "is", "are", "be", "but", "am"]) == [
+    "a", "am", "are", "be", "but", "is", "or"]
+
+assert wordtools.longestword(["a", "apple", "pear", "grape"]) == 5
+assert wordtools.longestword(["a", "am", "I", "be"]) == 2
+assert wordtools.longestword(
+    ["this", "supercalifragilisticexpialidocious"]) == 34
+assert wordtools.longestword([]) == 0
