@@ -16,6 +16,7 @@
 # Motivated by the fact that our tests don’t even run,
 # let alone pass, we now write the function:
 
+from math import log, ceil
 import time
 import urllib.request
 
@@ -62,22 +63,22 @@ assert search_linear(friends, "Bill") == -1
 
 # Using the previous algorithm in new algorith:
 
-def find_unknown_words(vocab, wds):
-    result = []
-    for w in wds:
-        if (search_linear(vocab, w) < 0):
-            result.append(w)
-    return result
+# def find_unknown_words(vocab, wds):
+#     result = []
+#     for w in wds:
+#         if (search_linear(vocab, w) < 0):
+#             result.append(w)
+#     return result
 
 
 vocab = ["apple", "boy", "dog", "down", "fell", "girl", "grass", "the", "tree"]
 book_words = "the apple fell from the tree to the grass".split()
 
-find_unknown_words(vocab, book_words)
+# find_unknown_words(vocab, book_words)
 
-assert find_unknown_words(vocab, book_words) == ["from", "to"]
-assert find_unknown_words([], book_words) == book_words
-assert find_unknown_words(vocab, ["the", "boy", "fell"]) == []
+# assert find_unknown_words(vocab, book_words) == ["from", "to"]
+# assert find_unknown_words([], book_words) == book_words
+# assert find_unknown_words(vocab, ["the", "boy", "fell"]) == []
 
 
 # Now let us look at the scalability. We have more realistic vocabulary
@@ -122,9 +123,9 @@ def load_words_from_file(filename):
     return wds
 
 
-bigger_vocab = load_words_from_file("vocab.txt")
-print("There are {0} words in the vocab, starting with\n {1} ".format(
-    len(bigger_vocab), bigger_vocab[:6]))
+# bigger_vocab = load_words_from_file("vocab.txt")
+# print("There are {0} words in the vocab, starting with\n {1} ".format(
+#     len(bigger_vocab), bigger_vocab[:6]))
 
 
 # Now let us load up a book
@@ -161,15 +162,15 @@ def get_words_from_book(filename):
     return wds
 
 
-book_words = get_words_from_book("alice.txt")
-print("There are {0} words in the book, the first 100 are\n {1}".format(
-    len(book_words), book_words[:100]))
+# book_words = get_words_from_book("alice.txt")
+# print("There are {0} words in the book, the first 100 are\n {1}".format(
+#     len(book_words), book_words[:100]))
 
 
 # Now we have all the pieces ready, let us see what words in this book are not
 # in the vocabulary:
 
-missing_words = find_unknown_words(bigger_vocab, book_words)
+# missing_words = find_unknown_words(bigger_vocab, book_words)
 
 # print(missing_words)
 
@@ -183,19 +184,19 @@ missing_words = find_unknown_words(bigger_vocab, book_words)
 # import time
 
 # Note, that time.clock() has since been deprecated, using:
-t0 = time.process_time()
-missing_words = find_unknown_words(book_words, book_words)
-t1 = time.process_time()
-print("There are {0} unknown words.".format(len(missing_words)))
-print("That took {0:.4f} seconds.".format(t1-t0))
+# t0 = time.process_time()
+# missing_words = find_unknown_words(book_words, book_words)
+# t1 = time.process_time()
+# print("There are {0} unknown words.".format(len(missing_words)))
+# print("That took {0:.4f} seconds.".format(t1-t0))
 # >>> There are 0 unkown words.
 # >>> That took 2.7484 seconds.
 
-t0 = time.perf_counter()
-missing_words = find_unknown_words(book_words, book_words)
-t1 = time.perf_counter()
-print("There are {0} unknown words.".format(len(missing_words)))
-print("That took {0:.4f} seconds.".format(t1-t0))
+# t0 = time.perf_counter()
+# missing_words = find_unknown_words(book_words, book_words)
+# t1 = time.perf_counter()
+# print("There are {0} unknown words.".format(len(missing_words)))
+# print("That took {0:.4f} seconds.".format(t1-t0))
 # >>> There are 0 unkown words.
 # >>> That took 2.7542 seconds.
 
@@ -215,3 +216,118 @@ print("That took {0:.4f} seconds.".format(t1-t0))
 # In the tests above, we start our seach within an ROI in the center of the data,
 # this results in three possible outcomes:
 #   we found the target
+#   we can discard the front half of the data
+#   we can discard the second half of the data
+
+# Example Code:
+
+def search_binary(xs, target):
+    """ Find and return the index of key in sequence xs """
+    b = 0
+    ub = len(xs)
+    while True:
+        # If search comes up empty:
+        if b == ub:
+            return -1
+        # Probe the middle of the ROI
+        mid_index = (b + ub) // 2
+
+        # Fetch the item at the position
+        item_at_mid = xs[mid_index]
+
+        # print("ROI[{0}:{1}](size={2}), probed='{3}', target='{4}'".format(
+        #     b, ub, ub-b, item_at_mid, target))
+
+        # How does the probed item compare to the target?
+        if item_at_mid == target:
+            return mid_index
+        if item_at_mid < target:
+            b = mid_index + 1
+        else:
+            ub = mid_index
+
+
+# def find_unknown_words(vocab, wds):
+#     result = []
+#     for w in wds:
+#         if (search_binary(vocab, w) < 0):
+#             result.append(w)
+#     return result
+
+
+# xs = [2, 3, 5, 7, 11, 13, 17, 23, 29, 31, 37, 43, 47, 53]
+# assert search_binary(xs, 20) == -1
+# assert search_binary(xs, 99) == -1
+# assert search_binary(xs, 1) == -1
+
+# for(i, v) in enumerate(xs):
+#     assert search_binary(xs, v) == i
+
+
+# Substitute a call to this search algorithm instead of calling the
+# search_linear in find_unknown_words
+
+# first linear:
+# t0 = time.perf_counter()
+# missing_words = find_unknown_words(bigger_vocab, book_words)
+# t1 = time.perf_counter()
+# print("There are {0} unknown words.".format(len(missing_words)))
+# print("That took {0:.4f} seconds.".format(t1-t0))
+# returns
+# >>> There are 3396 unknown words.
+# >>> That took 13.4931 seconds.
+
+# with binary search:
+# returns:
+# >>> There are 3396 unknown words.
+# >>> That took 0.0641 seconds.
+
+
+# Formula for how many probes are needed for a list of (N) size:
+# k = [sqrtlog(N+1)]
+
+# or how big of a list we can deal with given (k) amount of probes:
+# N = 2**K - 1
+
+
+# Example: A list has 1000 elements, what is max number of probes needed to do a
+# binary search?
+
+# form math import log, ceil
+print(ceil(log(1000 + 1, 2)))
+# >>> 10
+# Summation: to find a target in a list of 1000 elements,
+# the max number of probes needed is 10
+
+
+# 14.5 Removing adjacent duplicates from the list
+#  One approach: sort the list and remove adjacent duplicates
+
+# remove_adjacent_dups([1,2,3,3,3,5,6,9,9]) == [1,2,3,5,6,9]
+# test(remove_adjacent_dups([]) == [])
+# test(remove_adjacent_dups(["a", "big", "big", "bite", "dog"]) ==
+#    ["a", "big", "bite", "dog"])
+
+
+def remove_adjacent_dups(xs):
+    """Return a new list in which all adjacent
+    ducplicates from xs have been removed.
+    """
+    result = []
+    most_recent_elem = None
+    for e in xs:
+        if e != most_recent_elem:
+            result.append(e)
+            most_recent_elem = e
+
+    return result
+
+
+# Run this on alice.txt
+
+all_words = get_words_from_book('alice.txt')
+all_words.sort()
+book_words = remove_adjacent_dups(all_words)
+print("There are {0} words in the book. Only {1} are unique.".format(
+    len(all_words), len(book_words)))
+print("The first 100 words are \n{0}".format(book_words[:100]))
