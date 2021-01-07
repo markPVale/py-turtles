@@ -325,9 +325,98 @@ def remove_adjacent_dups(xs):
 
 # Run this on alice.txt
 
-all_words = get_words_from_book('alice.txt')
-all_words.sort()
-book_words = remove_adjacent_dups(all_words)
-print("There are {0} words in the book. Only {1} are unique.".format(
-    len(all_words), len(book_words)))
-print("The first 100 words are \n{0}".format(book_words[:100]))
+# all_words = get_words_from_book('alice.txt')
+# all_words.sort()
+# book_words = remove_adjacent_dups(all_words)
+# print("There are {0} words in the book. Only {1} are unique.".format(
+#     len(all_words), len(book_words)))
+# print("The first 100 words are \n{0}".format(book_words[:100]))
+
+# >>> There are 27336 words in the book. Only 2569 are unique.
+# >>> The first 100 words are...
+
+
+# 14.6) Merging Sorted Lists
+
+# A simple yet inefficient algorithm:
+# newlist = xs + ys
+# newlist.sort()
+
+# Tests:
+xs = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+ys = [4, 8, 12, 16, 20, 24]
+zs = xs + ys
+zs.sort()
+
+
+def merge(xs, ys):
+    """ merge sorted lists xs and ys. Return a sorted result """
+    result = []
+    xi = 0
+    yi = 0
+
+# Keep two indexes and whichever item currently indexed is smaller,
+# add that item to the result variable
+    while True:
+        if xi >= len(xs):
+            result.extend(ys[yi:])
+            return result
+
+        if yi >= len(ys):
+            result.extend(xs[xi:])
+            return result
+
+        # Both lists still have items, copy smaller item to result
+        if xs[xi] <= ys[yi]:
+            result.append(xs[xi])
+            xi += 1
+        else:
+            result.append(ys[yi])
+            yi += 1
+
+
+assert merge(xs, []) == xs
+assert merge([], []) == []
+assert merge(xs, ys) == zs
+assert merge([1, 2, 3], [3, 4, 5]) == [1, 2, 3, 3, 4, 5]
+assert merge(['a', 'big', 'cat'], ['big', 'bite', 'dog']) == [
+    'a', 'big', 'big', 'bite', 'cat', 'dog']
+
+
+# 14.7)
+
+# The pattern for the algorithm to merge sorted lists considers:
+# What should we do when either list has no more items?
+# What should we do if the smallest items from each list are equal to each other?
+# What should we do if the smallest item in the first list is smaller than the smallest one
+# in the second list?
+# What should we do in the remaining case?
+
+
+# Adapt the merge algorithm fo each of these cases:
+
+# 1) Return only those items that are present in both lists
+
+# def merge_common(lst_1, lst_2):
+#     result = []
+#     for element in lst_1:
+#         if element in lst_2:
+#             result.append(element)
+#     return result
+
+
+# Using list comprehensions:
+# def merge_common(lst_1, lst_2):
+#     return [element for element in lst_1 if element in lst_2]
+
+
+# A more pythonic approach:
+def merge_common(lst_1, lst_2):
+    return sorted(list(set(lst_1).intersection(lst_2)))
+
+
+lst1 = [1, 2, 3, 4, 4, 5, 55, 66, 33, 21]
+lst2 = [3, 44, 5, 33, 4]
+
+
+print(merge_common(lst1, lst2))
