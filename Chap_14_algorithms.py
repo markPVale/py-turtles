@@ -72,7 +72,7 @@ assert search_linear(friends, "Bill") == -1
 
 
 vocab = ["apple", "boy", "dog", "down", "fell", "girl", "grass", "the", "tree"]
-book_words = "the apple fell from the tree to the grass".split()
+# book_words = "the apple fell from the tree to the grass".split()
 
 # find_unknown_words(vocab, book_words)
 
@@ -123,7 +123,7 @@ def load_words_from_file(filename):
     return wds
 
 
-# bigger_vocab = load_words_from_file("vocab.txt")
+bigger_vocab = load_words_from_file("vocab.txt")
 # print("There are {0} words in the vocab, starting with\n {1} ".format(
 #     len(bigger_vocab), bigger_vocab[:6]))
 
@@ -162,7 +162,7 @@ def get_words_from_book(filename):
     return wds
 
 
-# book_words = get_words_from_book("alice.txt")
+book_words = get_words_from_book("alice.txt")
 # print("There are {0} words in the book, the first 100 are\n {1}".format(
 #     len(book_words), book_words[:100]))
 
@@ -420,3 +420,237 @@ lst2 = [3, 44, 5, 33, 4]
 
 
 print(merge_common(lst1, lst2))
+
+
+# 2) Return only those items that are present in the first list, but not in the second
+first1 = [0, 1, 1, 2, 3, 4, 5, 7]
+sec2 = [1, 3, 5, 6, 7, 10]
+
+
+def lst1_unique(xs, ys):
+    """ return a list of items from first and second list that are unique to
+        list one
+     """
+    result = []
+    xi = 0
+    yi = 0
+
+# Keep two indexes and whichever item currently indexed is smaller,
+# add that item to the result variable
+    while True:
+        if xi >= len(xs):
+            return result
+
+        if yi >= len(ys):
+            result.extend(xs[xi:])
+            return result
+
+        # Both lists still have items, copy smaller item to result
+        # ******Unless for this case, the items are equal*****
+        if xs[xi] < ys[yi]:
+            result.append(xs[xi])
+            xi += 1
+        elif xs[xi] == ys[yi]:
+            xi += 1
+        else:
+            yi += 1
+
+
+print(lst1_unique(first1, sec2))
+
+# 3) Return only those items that are present in the second list, but not in the first
+first2 = [0, 1, 1, 2, 3, 4, 5, 7]
+sec3 = [1, 3, 5, 6, 7, 10]
+
+
+def lst2_unique(xs, ys):
+    """ return a list of items from first and second list that are unique to
+        list one
+     """
+    result = []
+    xi = 0
+    yi = 0
+
+# Keep two indexes and whichever item currently indexed is smaller,
+# add that item to the result variable
+    while True:
+        if xi >= len(xs):
+            result.extend(ys[yi:])
+            return result
+
+        if yi >= len(ys):
+            return result
+
+        # Both lists still have items, copy smaller item to result
+        # ******Unless for this case, the items are equal*****
+        if xs[xi] < ys[yi]:
+            xi += 1
+        elif xs[xi] == ys[yi]:
+            yi += 1
+        else:
+            result.append(ys[yi])
+            yi += 1
+
+
+print(lst2_unique(first2, sec3))
+
+# 4) Return items that are present in either the first or second list:
+
+
+def merge_lists(lst_1, lst_2):
+    return sorted(list(lst_1)+(lst_2))
+
+
+# print(merge_lists(lst1, lst2))
+
+
+# 5) Return items from the first list that are not eliminated by a matching
+# element in the second list. In this case, an item in the second list "knocks out"
+# just one matching item in the first list. This operation is sometimes called bagdiff.
+home = [5, 7, 11, 11, 11, 12, 13]
+away = [7, 8, 11]
+
+
+def bagdiff(xs, ys):
+    """ merge sorted lists xs and ys. Return a sorted result """
+    result = []
+    xi = 0
+    yi = 0
+
+# Keep two indexes and whichever item currently indexed is smaller,
+# add that item to the result variable
+    while True:
+        if xi >= len(xs):
+            result.extend(ys[yi:])
+            return result
+
+        if yi >= len(ys):
+            result.extend(xs[xi:])
+            return result
+
+        # Both lists still have items, copy smaller item to result
+        # ******Unless for this case, the items are equal*****
+        if xs[xi] < ys[yi]:
+            result.append(xs[xi])
+            xi += 1
+        elif xs[xi] > ys[yi]:
+            yi += 1
+        else:
+            xi += 1
+            yi += 1
+
+
+print(bagdiff(home, away))
+
+
+# Use a variant of the merge to return the words that occur in the Alice.txt,
+#  but not in the vocabulary.
+
+def find_unknowns_merge_pattern(vocab, wds):
+    """Both the vocab and wds must be sorted. Return a new
+       list of words from wds that do not occur in vocab.
+    """
+
+    result = []
+    xi = 0
+    yi = 0
+
+    while True:
+        if xi >= len(vocab):
+            result.extend(wds[yi:])
+            return result
+
+        if yi >= len(wds):
+            return result
+        # Good, word exists in vocab
+        if vocab[xi] == wds[yi]:
+            yi += 1
+        # Move past this vocab word
+        elif vocab[xi] < wds[yi]:
+            xi += 1
+        else:
+            result.append(wds[yi])
+            yi += 1
+
+
+all_words = get_words_from_book('Alice.txt')
+t0 = time.perf_counter()
+all_words.sort()
+book_words = remove_adjacent_dups(all_words)
+missing_words = find_unknowns_merge_pattern(bigger_vocab, book_words)
+t1 = time.perf_counter()
+print('There are {0} unknown words'.format(len(missing_words)))
+print('That took {0:.4f} seconds'.format(t1-t0))
+
+
+# >>> There are 827 unknown words
+# >>> That took 0.0149 seconds
+
+
+# 14.8) Eight Queens puzzle, pt.1
+
+# Check if Queens share a diagonal:
+# share_diagonal(5,2,2,0)
+
+def share_diagonal(x0, y0, x1, y1):
+    """Is (x0, y0) on a shared diagonal with (x1, y1)?"""
+    dy = abs(y1 - y0)
+    dx = abs(x1 - x0)
+    # they clash if dx == dy
+    return dx == dy
+
+
+def col_clashes(bs, c):
+    """ Return True if the queen at column c clashes with any queen to its left"""
+    for i in range(c):
+        if share_diagonal(i, bs[i], c, bs[c]):
+            return True
+    # No clashes - col c has a safe placement
+    return False
+
+
+def has_clashes(the_board):
+    """ Determine whether we have any queens clashing on the diagonals
+        We're assuming here that the_board is a permutation of column
+        numbers, so we're not explicitly checking row or 
+        column clashes
+    """
+    for col in range(1, len(the_board)):
+        if col_clashes(the_board, col):
+            return True
+    return False
+
+    # Because of the many ways of choosing 8 squares of a 64 square game board,
+    # we will use permutatuions.
+
+    # We'll try a random shuffle of the permutation [0,1,2,3,4,5,6,7]
+
+
+def main():
+    import random
+    # import random
+    rng = random.Random()
+
+    # generate the initial permutation
+    bd = list(range(8))
+    num_found = 0
+    tries = 0
+    while num_found < 10:
+        rng.shuffle(bd)
+        tries += 1
+        if not has_clashes(bd):
+            print("Found solution {0} in {1} tries.".format(bd, tries))
+            tries = 0
+            num_found += 1
+
+
+main()
+
+
+# Here is an interesting fact. On an 8x8 board, there are known to be
+#  92 different solutions to this puzzle. We are randomly picking one
+# of 40320 possible permutations of our representation. So our chances
+#  of picking a solution on each try are 92/40320. Put another way, on
+# average we’ll need 40320/92 tries — about 438.26 — before we stumble
+# across a solution. The number of tries we printed looks like our experimental
+# data agrees quite nicely with our theory!
