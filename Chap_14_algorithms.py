@@ -592,59 +592,59 @@ print('That took {0:.4f} seconds'.format(t1-t0))
 # Check if Queens share a diagonal:
 # share_diagonal(5,2,2,0)
 
-def share_diagonal(x0, y0, x1, y1):
-    """Is (x0, y0) on a shared diagonal with (x1, y1)?"""
-    dy = abs(y1 - y0)
-    dx = abs(x1 - x0)
-    # they clash if dx == dy
-    return dx == dy
+# def share_diagonal(x0, y0, x1, y1):
+#     """Is (x0, y0) on a shared diagonal with (x1, y1)?"""
+#     dy = abs(y1 - y0)
+#     dx = abs(x1 - x0)
+#     # they clash if dx == dy
+#     return dx == dy
 
 
-def col_clashes(bs, c):
-    """ Return True if the queen at column c clashes with any queen to its left"""
-    for i in range(c):
-        if share_diagonal(i, bs[i], c, bs[c]):
-            return True
-    # No clashes - col c has a safe placement
-    return False
+# def col_clashes(bs, c):
+#     """ Return True if the queen at column c clashes with any queen to its left"""
+#     for i in range(c):
+#         if share_diagonal(i, bs[i], c, bs[c]):
+#             return True
+#     # No clashes - col c has a safe placement
+#     return False
 
 
-def has_clashes(the_board):
-    """ Determine whether we have any queens clashing on the diagonals
-        We're assuming here that the_board is a permutation of column
-        numbers, so we're not explicitly checking row or 
-        column clashes
-    """
-    for col in range(1, len(the_board)):
-        if col_clashes(the_board, col):
-            return True
-    return False
+# def has_clashes(the_board):
+#     """ Determine whether we have any queens clashing on the diagonals
+#         We're assuming here that the_board is a permutation of column
+#         numbers, so we're not explicitly checking row or
+#         column clashes
+#     """
+#     for col in range(1, len(the_board)):
+#         if col_clashes(the_board, col):
+#             return True
+#     return False
 
-    # Because of the many ways of choosing 8 squares of a 64 square game board,
-    # we will use permutatuions.
+#     # Because of the many ways of choosing 8 squares of a 64 square game board,
+#     # we will use permutatuions.
 
-    # We'll try a random shuffle of the permutation [0,1,2,3,4,5,6,7]
-
-
-def main():
-    import random
-    # import random
-    rng = random.Random()
-
-    # generate the initial permutation
-    bd = list(range(8))
-    num_found = 0
-    tries = 0
-    while num_found < 10:
-        rng.shuffle(bd)
-        tries += 1
-        if not has_clashes(bd):
-            print("Found solution {0} in {1} tries.".format(bd, tries))
-            tries = 0
-            num_found += 1
+#     # We'll try a random shuffle of the permutation [0,1,2,3,4,5,6,7]
 
 
-main()
+# def main():
+#     import random
+#     # import random
+#     rng = random.Random()
+
+#     # generate the initial permutation
+#     bd = list(range(8))
+#     num_found = 0
+#     tries = 0
+#     while num_found < 10:
+#         rng.shuffle(bd)
+#         tries += 1
+#         if not has_clashes(bd):
+#             print("Found solution {0} in {1} tries.".format(bd, tries))
+#             tries = 0
+#             num_found += 1
+
+
+# main()
 
 
 # Here is an interesting fact. On an 8x8 board, there are known to be
@@ -654,3 +654,356 @@ main()
 # average we’ll need 40320/92 tries — about 438.26 — before we stumble
 # across a solution. The number of tries we printed looks like our experimental
 # data agrees quite nicely with our theory!
+
+
+# 14.11) Exercises:
+
+# 1) Alice in Wonderland Merge
+# See above
+
+
+# 2) Modify the queens program to solve some boards of size 4, 12, and 16.
+# What is the maximum size puzzle you can usually solve in under a minute?
+
+# def share_diagonal(x0, y0, x1, y1):
+#     """Is (x0, y0) on a shared diagonal with (x1, y1)?"""
+#     dy = abs(y1 - y0)
+#     dx = abs(x1 - x0)
+#     # they clash if dx == dy
+#     return dx == dy
+
+
+# def col_clashes(bs, c):
+#     """ Return True if the queen at column c clashes with any queen to its left"""
+#     for i in range(c):
+#         if share_diagonal(i, bs[i], c, bs[c]):
+#             return True
+#     # No clashes - col c has a safe placement
+#     return False
+
+
+# def has_clashes(the_board):
+#     """ Determine whether we have any queens clashing on the diagonals
+#         We're assuming here that the_board is a permutation of column
+#         numbers, so we're not explicitly checking row or
+#         column clashes
+#     """
+#     for col in range(1, len(the_board)):
+#         if col_clashes(the_board, col):
+#             return True
+#     return False
+
+#     # Because of the many ways of choosing 8 squares of a 64 square game board,
+#     # we will use permutatuions.
+
+#     # We'll try a random shuffle of the permutation [0,1,2,3,4,5,6,7]
+
+
+# def main():
+#     import random
+#     # import random
+#     rng = random.Random()
+
+#     # generate the initial permutation
+#     bd = list(range(16))
+#     num_found = 0
+#     tries = 0
+#     t0 = time.perf_counter()
+#     while num_found < 10:
+#         rng.shuffle(bd)
+#         tries += 1
+#         if not has_clashes(bd):
+#             print("Found solution {0} in {1} tries.".format(bd, tries))
+#             tries = 0
+#             num_found += 1
+#     t1 = time.perf_counter()
+#     print(t1 - t0)
+
+
+# main()
+
+
+# Board size of Four:
+# Found solution [1, 3, 0, 2] in 1 tries.
+# Found solution [2, 0, 3, 1] in 5 tries.
+# Found solution [1, 3, 0, 2] in 10 tries.
+# Found solution [1, 3, 0, 2] in 2 tries.
+# Found solution [1, 3, 0, 2] in 26 tries.
+# Found solution [2, 0, 3, 1] in 5 tries.
+# Found solution [2, 0, 3, 1] in 9 tries.
+# Found solution [2, 0, 3, 1] in 13 tries.
+# Found solution [2, 0, 3, 1] in 8 tries.
+# Found solution [1, 3, 0, 2] in 10 tries.
+# 0.0003903910000000038
+
+# Board size of 12:
+# Found solution [3, 10, 4, 7, 11, 0, 6, 1, 9, 5, 8, 2] in 127616 tries.
+# Found solution [8, 5, 9, 1, 6, 11, 3, 0, 7, 10, 4, 2] in 25748 tries.
+# Found solution [4, 1, 8, 11, 7, 3, 0, 9, 5, 10, 2, 6] in 21588 tries.
+# Found solution [8, 5, 3, 0, 6, 11, 1, 10, 7, 2, 4, 9] in 169467 tries.
+# Found solution [3, 9, 6, 8, 10, 2, 0, 5, 1, 4, 11, 7] in 49349 tries.
+# Found solution [4, 6, 1, 10, 5, 7, 9, 3, 0, 2, 8, 11] in 13077 tries.
+# Found solution [7, 1, 6, 9, 0, 8, 11, 4, 2, 10, 5, 3] in 51184 tries.
+# Found solution [6, 8, 3, 11, 9, 2, 5, 1, 10, 7, 0, 4] in 88882 tries.
+# Found solution [3, 7, 9, 2, 0, 5, 10, 8, 1, 11, 4, 6] in 2092 tries.
+# Found solution [3, 10, 7, 2, 6, 11, 1, 5, 0, 9, 4, 8] in 6695 tries.
+# 3.950741986
+
+# Board size of 16:
+# Found solution [7, 9, 12, 0, 13, 3, 10, 8, 1, 4, 2, 11, 6, 15, 5, 14] in 1377112 tries.
+# Found solution [14, 12, 3, 8, 6, 2, 9, 1, 4, 0, 10, 15, 5, 11, 13, 7] in 187288 tries.
+# Found solution [11, 5, 8, 4, 0, 12, 15, 7, 10, 6, 2, 14, 1, 3, 9, 13] in 761302 tries.
+# Found solution [11, 7, 0, 6, 13, 9, 1, 15, 10, 14, 2, 4, 8, 3, 5, 12] in 2537199 tries.
+# Found solution [7, 10, 3, 6, 12, 5, 0, 11, 4, 15, 9, 2, 14, 8, 1, 13] in 369347 tries.
+# Found solution [1, 8, 13, 3, 10, 15, 4, 11, 0, 2, 7, 5, 14, 12, 9, 6] in 1227528 tries.
+# Found solution [7, 14, 10, 15, 6, 1, 11, 2, 0, 13, 4, 9, 12, 3, 5, 8] in 219311 tries.
+# Found solution [8, 3, 0, 6, 15, 12, 7, 11, 2, 14, 1, 4, 9, 13, 10, 5] in 1888880 tries.
+# Found solution [12, 5, 9, 11, 13, 8, 3, 0, 2, 15, 10, 7, 4, 14, 1, 6] in 2778809 tries.
+# Found solution [7, 0, 6, 14, 12, 15, 9, 5, 1, 4, 11, 13, 2, 10, 8, 3] in 1009425 tries.
+# 103.54650013000001
+
+
+# 3) Adapt the queen program so that we keep a list of solutions that have already
+# printed, so we don't print the same solution more than once:
+#   Add empty list, set to variable solutions
+#   At the end of main function, solutions.append(list(bd))
+#   Add this line in main: if not has_clashes(bd) and bd not in solutions:
+
+
+# def share_diagonal(x0, y0, x1, y1):
+#     """Is (x0, y0) on a shared diagonal with (x1, y1)?"""
+#     dy = abs(y1 - y0)
+#     dx = abs(x1 - x0)
+#     # they clash if dx == dy
+#     return dx == dy
+
+
+# def col_clashes(bs, c):
+#     """ Return True if the queen at column c clashes with any queen to its left"""
+#     for i in range(c):
+#         if share_diagonal(i, bs[i], c, bs[c]):
+#             return True
+#     # No clashes - col c has a safe placement
+#     return False
+
+
+# def has_clashes(the_board):
+#     """ Determine whether we have any queens clashing on the diagonals
+#         We're assuming here that the_board is a permutation of column
+#         numbers, so we're not explicitly checking row or
+#         column clashes
+#     """
+#     for col in range(1, len(the_board)):
+#         if col_clashes(the_board, col):
+#             return True
+#     return False
+
+#     # Because of the many ways of choosing 8 squares of a 64 square game board,
+#     # we will use permutatuions.
+
+#     # We'll try a random shuffle of the permutation [0,1,2,3,4,5,6,7]
+
+
+# def main():
+#     import random
+#     # import random
+#     rng = random.Random()
+#     solutions = []
+#     # generate the initial permutation
+#     bd = list(range(4))
+#     num_found = 0
+#     tries = 0
+#     t0 = time.perf_counter()
+#     while num_found < 10:
+#         rng.shuffle(bd)
+#         tries += 1
+#         if not has_clashes(bd) and bd not in solutions:
+#             print("Found solution {0} in {1} tries.".format(bd, tries))
+#             solutions.append(list(bd))
+#             tries = 0
+#             num_found += 1
+#     t1 = time.perf_counter()
+#     print(t1 - t0)
+
+
+# main()
+
+
+# 4) Chess boards are symmetric: if we have a solution to the queens problem,
+# its mirror solution — either flipping the board on the X or in the Y axis,
+# is also a solution. And giving the board a 90 degree, 180 degree, or 270 degree
+# rotation is also a solution. In some sense, solutions that are just mirror images
+# or rotations of other solutions — in the same family — are less interesting than
+# the unique “core cases”. Of the 92 solutions for the 8 queens problem, there are
+# only 12 unique families if you take rotations and mirror images into account.
+# Wikipedia has some fascinating stuff about this.
+
+# a)Write a function to mirror a solution in the Y axis,
+
+
+# b) Write a function to mirror a solution in the X axis,
+
+# c) Write a function to rotate a solution by 90 degrees anti-clockwise,
+# and use this to provide 180 and 270 degree rotations too.
+
+# d) Write a function which is given a solution, and it generates the
+#  family of symmetries for that solution. For example, the symmetries of
+
+# e) Now adapt the queens program so it won’t list solutions that are in the same family.
+# It only prints solutions from unique families.
+
+# def share_diagonal(x0, y0, x1, y1):
+#     """Is (x0, y0) on a shared diagonal with (x1, y1)?"""
+#     dy = abs(y1 - y0)
+#     dx = abs(x1 - x0)
+#     # they clash if dx == dy
+#     return dx == dy
+
+
+# def col_clashes(bs, c):
+#     """ Return True if the queen at column c clashes with any queen to its left"""
+#     for i in range(c):
+#         if share_diagonal(i, bs[i], c, bs[c]):
+#             return True
+#     # No clashes - col c has a safe placement
+#     return False
+
+
+# def has_clashes(the_board):
+#     """ Determine whether we have any queens clashing on the diagonals
+#         We're assuming here that the_board is a permutation of column
+#         numbers, so we're not explicitly checking row or
+#         column clashes
+#     """
+#     for col in range(1, len(the_board)):
+#         if col_clashes(the_board, col):
+#             return True
+#     return False
+
+#     # Because of the many ways of choosing 8 squares of a 64 square game board,
+#     # we will use permutatuions.
+
+#     # We'll try a random shuffle of the permutation [0,1,2,3,4,5,6,7]
+
+
+# def main():
+#     import random
+#     # import random
+#     rng = random.Random()
+#     solutions = []
+#     # generate the initial permutation
+#     bd = list(range(4))
+#     num_found = 0
+#     tries = 0
+#     t0 = time.perf_counter()
+#     while num_found < 10:
+#         rng.shuffle(bd)
+#         tries += 1
+#         if not has_clashes(bd):
+#             # if not has_clashes(bd) and bd not in solutions:
+#             print("Found solution {0} in {1} tries.".format(bd, tries))
+#             solutions.append(list(bd))
+#             tries = 0
+#             num_found += 1
+#     t1 = time.perf_counter()
+#     print(t1 - t0)
+
+
+# main()
+
+
+# Every week a computer scientist buys four lotto tickets.
+# She always chooses the same prime numbers, with the hope that
+# if she ever hits the jackpot, she will be able to go onto TV and
+# Facebook and tell everyone her secret. This will suddenly create
+# widespread public interest in prime numbers, and will be the trigger
+# event that ushers in a new age of enlightenment. She represents her weekly
+# tickets in Python as a list of lists:
+
+# my_tickets = [ [ 7, 17, 37, 19, 23, 43],
+#                [ 7,  2, 13, 41, 31, 43],
+#                [ 2,  5,  7, 11, 13, 17],
+#                [13, 17, 37, 19, 23, 43] ]
+
+# Complete these exercises.
+
+# a) Each lotto draw takes six random balls, numbered from 1 to 49.
+# Write a function to return a lotto draw.
+# (I used the random.sample() function which returns k length of unique elements
+# chosen from the population sequence.)
+
+def lotto_draw():
+    import random
+    winner = sorted(random.sample(range(1, 50), 6))
+    print(winner)
+    return winner
+
+# lotto_draw()
+
+# b) Write a function that compares a single ticket and a draw,
+# and returns the number of correct picks on that ticket:
+
+
+def buy_lotto_ticket():
+    import random
+    number_of_tix = int(input('how many tickets would you like to buy?'))
+    print_out = []
+    draw = sorted(random.sample(range(1, 50), 6))
+    for tix in range(number_of_tix):
+        draw = sorted(random.sample(range(1, 50), 6))
+        print_out.append(draw)
+    print(print_out)
+    return draw
+
+
+# buy_lotto_ticket()
+
+
+def did_you_win():
+    import random
+    winner = sorted(random.sample(range(1, 50), 6))
+    print(winner)
+    number_of_tix = int(input('how many tickets would you like to buy?'))
+    print_out = []
+    for items in range(number_of_tix):
+        draw = sorted(random.sample(range(1, 50), 6))
+        print_out.append(draw)
+    for tix in print_out:
+        if tix == winner:
+            print('you Won!')
+            print(tix, '->', winner)
+    print('Sorry, no matches', print_out, winner)
+
+
+# did_you_win()
+
+
+# c.) Write a function that takes a list of tickets and a draw,
+# and returns a list telling how many picks were correct on each ticket
+
+def lucky_nums():
+    import random
+
+    winner = sorted(random.sample(range(1, 50), 6))
+    # print(winner)
+    number_of_tix = int(input('how many tickets would you like to buy?'))
+    print_out = []
+    for items in range(number_of_tix):
+        draw = sorted(random.sample(range(1, 50), 6))
+        print_out.append(draw)
+
+    chosen = [list(set(num).intersection(winner)) for num in print_out]
+
+    count = 0
+
+    for lst in chosen:
+        for num in lst:
+            if num > 0:
+                count += 1
+
+    print(print_out, winner)
+    print(chosen)
+    print(f'{count} or your numbers/number matched winning numbers')
+
+
+lucky_nums()
