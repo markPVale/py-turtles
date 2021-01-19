@@ -1006,4 +1006,42 @@ def lucky_nums():
     print(f'{count} or your numbers/number matched winning numbers')
 
 
-lucky_nums()
+# lucky_nums()
+
+#  d.) Write a function that takes a list of integers, and returns the number of primes in the list:
+
+
+def isPrime(numlist):
+    primes = []
+
+    for num in numlist:
+        numIsPrime = True
+        if num > 1:
+            for i in range(2, num):
+                if num % i == 0:
+                    numIsPrime = False
+
+            if numIsPrime == True:
+                primes.append(num)
+    return primes
+
+
+print(isPrime([2, 3, 4, 5, 7, 11]))
+assert isPrime([42, 4, 7, 11, 1, 13]) == [7, 11, 13]
+
+
+# e). Write a function to discover whether the computer scientist has missed any
+# prime numbers in her selection of the four tickets. Return a list of all primes that she has missed:
+
+
+# f). Write a function that repeatedly makes a new draw, and compares the draw to the four tickets.
+
+# 1) Count how many draws are needed until one of the computer scientist’s tickets
+# has at least 3 correct picks. Try the experiment twenty times, and average out the
+# number of draws needed.
+
+# 2) How many draws are needed, on average, before she gets at least 4 picks correct?
+
+# 3) How many draws are needed, on average, before she gets at least 5 correct?
+# (Hint: this might take a while. It would be nice if you could print some dots,
+# like a progress bar, to show when each of the 20 experiments has completed.)
